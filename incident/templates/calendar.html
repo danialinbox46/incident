@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-lg-9" dir="rtl">
+	<nav aria-label="breadcrumb" style="padding-top: 8%;">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{% url 'dashboard' %}">{% blocktrans %}Dashboard{% endblocktrans %}</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{% blocktrans %}Calendar{% endblocktrans %}</li>
+		</ol>
+	</nav>
+	<div class="calendar-container">
+		<div class="clearfix">
+			<a class="btn btn-info left" href="?{{ prev_month }}">{% blocktrans %} Previous Month {% endblocktrans %}</a>
+			<a class="btn btn-info right" href="?{{ next_month }}">{% blocktrans %} Next Month {% endblocktrans %}</a>
+		</div>
+		{{ calendar }}
+	</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+    	$('.calendar tr td ul li').each(function() {
+    	    if($(this).length != 0){
+    	    	$(this).parent().parent().addClass('color_date');
+    	    }
+    	    else{
+    	    	$(this).parent().parent().removeClass('color_date')
+    	    }
+    	});
+	});
+
+</script>
+{% endblock %}
